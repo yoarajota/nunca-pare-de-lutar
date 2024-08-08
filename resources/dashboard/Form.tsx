@@ -3,18 +3,23 @@
 import { Checkbox } from "@components/ui/checkbox"
 import { Button } from "@components/ui/button"
 import { Input } from "@components/ui/input"
-import { custom } from "zod"
-import { useReducer } from "react"
-import { ArrowDownToDot, Save } from "lucide-react"
+import { useReducer, useState } from "react"
+import { Save } from "lucide-react"
 import { toast } from "sonner"
+import { Textarea } from "@components/ui/textarea"
 
 type CheckboxDemoProps = {
-  submit: (values: any) => boolean
+  submit: (values: any) => Promise<{ error: string | null }>
   defaultObject: any
+  isBlocked: boolean
+  setListData: (prev: any) => void
+  user: any
 }
 
-export default function Form({ submit, defaultObject }: CheckboxDemoProps) {
-  // Reducer to handle state
+export default function Form({ submit, defaultObject, isBlocked = false, user, setListData }: CheckboxDemoProps) {
+  const [formBlocked, setFormBlocked] = useState(isBlocked)
+  const [loading, setLoading] = useState(false)
+
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -45,11 +50,33 @@ export default function Form({ submit, defaultObject }: CheckboxDemoProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
+    if (formBlocked || loading) {
+      return
+    }
+
+    setLoading(true)
+
     const { error } = await submit(state)
 
+    setLoading(false)
+
     if (!error) {
-      dispatch({ type: "RESET FORM" })
       toast("boa monstro")
+      setFormBlocked(true)
+      setListData((prev: any) => [
+        {
+          ...state,
+          id: new Date().getTime(),
+          is_rest_day: !state.is_rest_day,
+          profile: {
+            name: user.name,
+            picture: user.picture,
+          },
+        },
+        ...prev,
+      ])
+
+      dispatch({ type: "RESET FORM" })
 
       return
     }
@@ -58,30 +85,35 @@ export default function Form({ submit, defaultObject }: CheckboxDemoProps) {
   }
 
   return (
-    <form className="flex items-center gap-6" onSubmit={handleSubmit}>
-      <Checkbox
-        id="is_rest_day"
-        checked={state.is_rest_day}
-        onCheckedChange={(value) => dispatch({ type: "REST_DAY", payload: value })}
-      />
-      <div>
-        <label htmlFor="is_rest_day">{state.is_rest_day ? "❌" : "✅"}</label>
+    <form className="flex items-center gap-8 sm:flex-col" onSubmit={handleSubmit}>
+      <div className="flex items-center gap-2">
+        <Checkbox
+          disabled={formBlocked}
+          id="is_rest_day"
+          checked={state.is_rest_day}
+          onCheckedChange={(value) => dispatch({ type: "REST_DAY", payload: value })}
+        />
+        <div>
+          <label htmlFor="is_rest_day">{!state.is_rest_day ? "❌" : "✅"}</label>
+        </div>
       </div>
 
       <div className="flex w-full flex-col gap-2">
         <Input
+          disabled={formBlocked}
           placeholder="Nome da Lenda"
           value={state.custom_name}
           onChange={(e) => dispatch({ type: "CUSTOM_NAME", payload: e.target.value })}
         />
-        <Input
+        <Textarea
+          disabled={formBlocked}
           placeholder="Descrição do Treino"
           value={state.description}
           onChange={(e) => dispatch({ type: "DESCRIPTION", payload: e.target.value })}
         />
       </div>
 
-      <Button type="submit" variant="outline">
+      <Button type="submit" variant="outline" disabled={formBlocked}>
         <Save size={18} />
       </Button>
     </form>

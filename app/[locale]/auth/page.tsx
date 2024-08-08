@@ -21,27 +21,29 @@ export default function Web() {
     <>
       <Script src="https://accounts.google.com/gsi/client" async />
 
-      <div
-        id="g_id_onload"
-        data-client_id="241589987239-rd0lq7urchqffe72abaocco8ks7ck316" // Remove hardcoded asap
-        data-context="signin"
-        data-ux_mode="popup"
-        data-callback="handleCredentialResponse"
-        data-nonce=""
-        data-auto_select="true"
-        data-itp_support="true"
-        data-use_fedcm_for_prompt="true"
-      ></div>
+      <div className="mx-auto flex h-screen max-w-2xl items-center justify-center">
+        <div
+          id="g_id_onload"
+          data-client_id="241589987239-rd0lq7urchqffe72abaocco8ks7ck316" // Remove hardcoded asap
+          data-context="signin"
+          data-ux_mode="popup"
+          data-callback="handleCredentialResponse"
+          data-nonce=""
+          data-auto_select="true"
+          data-itp_support="true"
+          data-use_fedcm_for_prompt="true"
+        ></div>
 
-      <div
-        className="g_id_signin"
-        data-type="standard"
-        data-shape="pill"
-        data-theme="outline"
-        data-text="signin_with"
-        data-size="large"
-        data-logo_alignment="left"
-      ></div>
+        <div
+          className="g_id_signin"
+          data-type="standard"
+          data-shape="pill"
+          data-theme="outline"
+          data-text="signin_with"
+          data-size="large"
+          data-logo_alignment="left"
+        ></div>
+      </div>
     </>
   )
 }
