@@ -18,7 +18,7 @@ export default function Dashboard({
     is_rest_day: boolean
     custom_name: string
     description: string
-    profile: {
+    profiles: {
       name: string
       picture: string
     }

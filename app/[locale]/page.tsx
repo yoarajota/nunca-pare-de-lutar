@@ -13,7 +13,7 @@ async function getData() {
 
   const { data, error } = await createClient()
     .from("list")
-    .select("*, profile(*)")
+    .select("*, profiles(*)")
     .gte("created_at", new Date(start).toISOString())
     .lte("created_at", new Date(end).toISOString())
     .order("created_at", { ascending: false })
@@ -29,7 +29,7 @@ export default async function Web() {
   const data = await getData()
   const user = await getUserInfo()
 
-  const isBlocked = data.some((item) => item.profile.id === user?.auth_user?.id)
+  const isBlocked = data.some((item) => item.profiles.id === user?.auth_user?.id)
 
   async function submit(values: {
     custom_name: string

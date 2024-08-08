@@ -48,7 +48,7 @@ export const getUserInfo = cache(async () => {
 
   const supabase = createClient()
   try {
-    const { data } = await supabase.from("profile").select("name, picture").eq("id", sessionUser.id).single()
+    const { data } = await supabase.from("profiles").select("name, picture").eq("id", sessionUser.id).single()
 
     return { auth_user: sessionUser, ...data }
   } catch (error) {

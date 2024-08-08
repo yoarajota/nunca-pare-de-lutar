@@ -68,7 +68,7 @@ export default function Form({ submit, defaultObject, isBlocked = false, user, s
           ...state,
           id: new Date().getTime(),
           is_rest_day: !state.is_rest_day,
-          profile: {
+          profiles: {
             name: user.name,
             picture: user.picture,
           },
