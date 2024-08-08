@@ -1,0 +1,15 @@
+{
+    "terminals": [
+        {
+            "name": "NEXT JS",
+            "command": "yarn dev"
+        },
+        {
+            "name": "SUPABASE",
+            "commands": [
+                "cd supabase",
+                "npx supabase status"
+            ]
+        }
+    ]
+}
