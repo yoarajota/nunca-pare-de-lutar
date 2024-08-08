@@ -50,7 +50,6 @@
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.4",
     "@t3-oss/env-nextjs": "^0.10.1",
-    "@usebasejump/next": "^0.0.4",
     "@vercel/otel": "^1.8.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
