@@ -50,7 +50,7 @@ export default async function Web() {
   }
 
   return (
-    <div className="mx-auto flex h-auto min-h-screen w-1/2 max-w-2xl flex-col items-center gap-8 py-12">
+    <div className="mx-auto flex h-auto min-h-screen w-3/4 max-w-2xl flex-col items-center gap-8 py-12 lg:w-1/2">
       <Dashboard isBlocked={isBlocked} submit={submit} data={data} user={user} />
     </div>
   )

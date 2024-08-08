@@ -7,6 +7,7 @@ import { useReducer, useState } from "react"
 import { Save } from "lucide-react"
 import { toast } from "sonner"
 import { Textarea } from "@components/ui/textarea"
+import { cn } from "@lib/utils"
 
 type CheckboxDemoProps = {
   submit: (values: any) => Promise<{ error: string | null }>
@@ -85,8 +86,8 @@ export default function Form({ submit, defaultObject, isBlocked = false, user, s
   }
 
   return (
-    <form className="flex items-center gap-8 sm:flex-col" onSubmit={handleSubmit}>
-      <div className="flex items-center gap-2">
+    <form className={cn("flex flex-col items-center gap-4 p-6 sm:flex-row")} onSubmit={handleSubmit}>
+      <div className="flex items-center gap-4">
         <Checkbox
           disabled={formBlocked}
           id="is_rest_day"
@@ -98,7 +99,7 @@ export default function Form({ submit, defaultObject, isBlocked = false, user, s
         </div>
       </div>
 
-      <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-col gap-4">
         <Input
           disabled={formBlocked}
           placeholder="Nome da Lenda"
