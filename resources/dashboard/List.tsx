@@ -26,7 +26,7 @@ export default function List({ data }: ListProps) {
           <Avatar className="hidden h-9 w-9 sm:flex">
             <AvatarImage src={item.profiles.picture} alt="Avatar" />
             <AvatarFallback className="flex h-full w-full items-center justify-center">
-              {item.custom_name?.toUpperCase?.() ?? item.profiles.name[0]?.toUpperCase()}
+              {item.custom_name?.[0]?.toUpperCase?.() ?? item.profiles.name[0]?.toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col gap-2">
