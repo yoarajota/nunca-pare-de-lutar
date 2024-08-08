@@ -14,6 +14,7 @@ export default function Dashboard({
   isBlocked: boolean
   submit: (values: any) => Promise<{ error: string | null }>
   data: {
+    id: number
     is_rest_day: boolean
     custom_name: string
     description: string
@@ -24,6 +25,7 @@ export default function Dashboard({
   }[]
   user: any
 }) {
+  // @ts-ignore
   const [listData, setListData] = useState(data)
 
   const today = new Date().toLocaleDateString()

@@ -21,7 +21,7 @@ export default function Form({ submit, defaultObject, isBlocked = false, user, s
   const [loading, setLoading] = useState(false)
 
   const [state, dispatch] = useReducer(
-    (state, action) => {
+    (state: any, action: any) => {
       switch (action.type) {
         case "REST_DAY":
           return { ...state, is_rest_day: action.payload }
