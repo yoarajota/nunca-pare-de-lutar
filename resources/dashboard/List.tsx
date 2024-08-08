@@ -26,11 +26,11 @@ export default function List({ data }: ListProps) {
           <Avatar className="hidden h-9 w-9 sm:flex">
             <AvatarImage src={item.profiles.picture} alt="Avatar" />
             <AvatarFallback className="flex h-full w-full items-center justify-center">
-              {item.profiles.name[0]?.toUpperCase()}
+              {item.custom_name?.toUpperCase?.() ?? item.profiles.name[0]?.toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-semibold leading-none">{item.profiles.name}</p>
+            <p className="text-sm font-semibold leading-none">{item.custom_name ?? item.profiles.name}</p>
             <div
               style={{
                 whiteSpace: "pre-wrap",
