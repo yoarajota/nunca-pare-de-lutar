@@ -23,9 +23,9 @@ export default function List({ data }: ListProps) {
         <div className="flex items-center gap-4" key={item.id}>
           <span>{item.is_rest_day ? "❌" : "✅"}</span>
 
-          <Avatar className="hidden size-9 sm:flex">
+          <Avatar className="hidden h-9 w-9 sm:flex">
             <AvatarImage src={item.profiles.picture} alt="Avatar" />
-            <AvatarFallback className="flex size-full items-center justify-center">
+            <AvatarFallback className="flex h-full w-full items-center justify-center">
               {item.profiles.name[0]?.toUpperCase()}
             </AvatarFallback>
           </Avatar>
