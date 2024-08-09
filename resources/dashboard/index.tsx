@@ -48,7 +48,7 @@ export default function Dashboard({
           <CardHeader>
             <CardTitle>Lista {today}</CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-4">
+          <CardContent className="flex flex-col gap-4">
             <List data={listData} />
           </CardContent>
         </Card>

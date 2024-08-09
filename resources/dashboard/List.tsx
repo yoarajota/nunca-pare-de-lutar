@@ -29,8 +29,8 @@ export default function List({ data }: ListProps) {
               {item.custom_name?.[0]?.toUpperCase?.() ?? item.profiles.name[0]?.toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <div className="flex flex-col gap-2">
-            <p className="text-sm font-semibold leading-none">{item.custom_name ?? item.profiles.name}</p>
+          <div className="flex flex-col">
+            <p className="h-4 text-sm font-semibold leading-none">{item.custom_name ?? item.profiles.name}</p>
             <div
               style={{
                 whiteSpace: "pre-wrap",

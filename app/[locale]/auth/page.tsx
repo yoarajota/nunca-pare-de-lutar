@@ -14,7 +14,7 @@ export default function Web() {
   window.handleCredentialResponse = async (response: { credential: string }) => {
     await signIn(response.credential)
 
-    router.push("/dashboard", { scroll: false })
+    router.push("/pt", { scroll: false })
   }
 
   return (
