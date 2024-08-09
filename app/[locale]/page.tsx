@@ -50,7 +50,7 @@ export default async function Web() {
 
     const { error } = await createClient()
       .from("list")
-      .insert({ ...values, is_rest_day: !values.is_rest_day })
+      .insert({ ...values, is_rest_day: !values.is_rest_day, created_at: new Date().toLocaleString() })
 
     if (error) {
       return { error: error.message }
