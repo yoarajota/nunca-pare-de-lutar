@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card"
 import { createClient, getUserInfo } from "@lib/supabase/server"
 import Dashboard from "resources/dashboard"
-import Form from "resources/dashboard/Form"
-import List from "resources/dashboard/List"
+
+export const revalidate = 10
 
 async function getData() {
   // Start of today
