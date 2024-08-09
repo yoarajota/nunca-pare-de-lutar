@@ -1,24 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card"
 import { createClient, getUserInfo } from "@lib/supabase/server"
 import Dashboard from "resources/dashboard"
+import { getCurrentTimeInSPTimezone } from "utils"
 
 export const revalidate = 10
 
-function getCurrentTimeInTimezone(timezoneOffset: number) {
-  const now = new Date()
-
-  return new Date(now.getTime() + timezoneOffset * 60 * 1000)
-}
-
 async function getData() {
-  const timezoneOffset = -180 // São Paulo está 180 minutos (3 horas) atrás do UTC
-
   // Start of today
-  const start = getCurrentTimeInTimezone(timezoneOffset)
+  const start = getCurrentTimeInSPTimezone()
   start.setHours(0, 0, 0, 0)
 
   // End of today
-  const end = getCurrentTimeInTimezone(timezoneOffset)
+  const end = getCurrentTimeInSPTimezone()
   end.setHours(23, 59, 59, 999)
 
   const { data, error } = await createClient()
@@ -50,7 +43,7 @@ export default async function Web() {
 
     const { error } = await createClient()
       .from("list")
-      .insert({ ...values, is_rest_day: !values.is_rest_day, created_at: new Date().toLocaleString() })
+      .insert({ ...values, is_rest_day: !values.is_rest_day, created_at: getCurrentTimeInSPTimezone().toLocaleString() })
 
     if (error) {
       return { error: error.message }
