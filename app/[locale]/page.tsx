@@ -16,8 +16,8 @@ async function getData() {
   const { data, error } = await createClient()
     .from("list")
     .select("*, profiles(*)")
-    .gte("created_at", start.toISOString())
-    .lte("created_at", end.toISOString())
+    .gte("created_at", start.toUTCString())
+    .lte("created_at", end.toUTCString())
     .order("created_at", { ascending: false })
 
   if (!data || error) {
