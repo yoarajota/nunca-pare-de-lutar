@@ -4,13 +4,21 @@ import Dashboard from "resources/dashboard"
 
 export const revalidate = 10
 
+function getCurrentTimeInTimezone(timezoneOffset: number) {
+  const now = new Date()
+
+  return new Date(now.getTime() + timezoneOffset * 60 * 1000)
+}
+
 async function getData() {
+  const timezoneOffset = -180 // São Paulo está 180 minutos (3 horas) atrás do UTC
+
   // Start of today
-  const start = new Date()
+  const start = getCurrentTimeInTimezone(timezoneOffset)
   start.setHours(0, 0, 0, 0)
 
   // End of today
-  const end = new Date()
+  const end = getCurrentTimeInTimezone(timezoneOffset)
   end.setHours(23, 59, 59, 999)
 
   const { data, error } = await createClient()
