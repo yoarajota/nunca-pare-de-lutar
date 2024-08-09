@@ -43,7 +43,11 @@ export default async function Web() {
 
     const { error } = await createClient()
       .from("list")
-      .insert({ ...values, is_rest_day: !values.is_rest_day, created_at: getCurrentTimeInSPTimezone().toLocaleString() })
+      .insert({
+        ...values,
+        is_rest_day: !values.is_rest_day,
+        created_at: getCurrentTimeInSPTimezone().toLocaleString(),
+      })
 
     if (error) {
       return { error: error.message }
