@@ -56,9 +56,19 @@ export default async function Web() {
     return { error: null }
   }
 
+  async function getList() {
+    "use server"
+
+    const { data, error } = await createClient().from("list").select(`*, profiles(*)`)
+
+    if (!data || error) {
+      throw new Error(error.message)
+    }
+    return data
+  }
   return (
     <div className="mx-auto flex h-auto min-h-screen w-3/4 max-w-2xl flex-col items-center gap-8 py-12 lg:w-1/2">
-      <Dashboard isBlocked={isBlocked} submit={submit} data={data} user={user} />
+      <Dashboard getList={getList} isBlocked={isBlocked} submit={submit} data={data} user={user} />
     </div>
   )
 }
