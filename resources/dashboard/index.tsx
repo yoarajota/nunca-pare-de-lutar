@@ -44,7 +44,6 @@ export default function Dashboard({
   }[]
   user: any
 }) {
-  //@ts - ignore
   const [listData, setListData] = useState(data)
   const [historyData, setHistoryData] = useState<groupedHistory>({})
 
@@ -61,10 +60,10 @@ export default function Dashboard({
       if (!acc[dateKey]) {
         acc[dateKey] = []
       }
-      acc[dateKey].push(item)
+      acc[dateKey]!.push(item)
 
       return acc
-    }, {})
+    }, {} as groupedHistory)
   }
 
   useEffect(() => {
