@@ -60,7 +60,7 @@ export default function Dashboard({
       if (!acc[dateKey]) {
         acc[dateKey] = []
       }
-      acc[dateKey].push(item)
+      acc[dateKey]!.push(item)
 
       return acc
     }, {} as groupedHistory)
